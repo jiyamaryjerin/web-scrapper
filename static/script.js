@@ -84,7 +84,7 @@ async function scrapeWebsite(url) {
 function generateTextFile(data) {
     return `The below contents have been scraped from URL: ${data.url} using Jiya's web scrapper app
 --------
-Title: ${data.title}
+//Title: ${data.title}
 Scraped on: ${new Date(data.timestamp).toLocaleString()}
 
 Content:
