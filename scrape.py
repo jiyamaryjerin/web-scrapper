@@ -1,20 +1,10 @@
-from selenium import webdriver
-from selenium.webdriver.common.by import By
+import requests
 from bs4 import BeautifulSoup
-import time
 
-def process_input(data):
-    options = webdriver.ChromeOptions()
-    options.add_argument("--headless=new")
-    driver = webdriver.Chrome(options=options)
-
-    driver.get(data)
-    time.sleep(8)  # wait for JS to load
-
-    page_source = driver.page_source
-    driver.quit()
-
-    soup = BeautifulSoup(page_source, "html.parser")
+def process_input(url):
+    response = requests.get(url)
+    response.raise_for_status()
+    soup = BeautifulSoup(response.text, "html.parser")
     main_content = None
 
     if soup.article:
